@@ -1,0 +1,32 @@
+<div class="auth__container">
+
+    <div class="mb-5">
+        <p-messages key="auth"></p-messages>
+    </div>
+
+    <p-card class="shadow-4" header="Welcome back">
+        <ng-template pTemplate="content">
+            <form [formGroup]="authForm" (ngSubmit)="login()">
+                <div class="p-fluid mb-4">
+                    <label for="email">Email</label>
+                    <input id="email" type="email" pInputText placeholder="Your email address" formControlName="email"/>
+                </div>
+                <div class="p-fluid mb-4">
+                    <label for="password">Password</label>
+                    <input id="password" type="password" pInputText placeholder="Your password" formControlName="password"/>
+                </div>
+                <div class="flex justify-content-between">
+                    <button type="button" pButton label="Reset" class="p-button-outlined p-button-secondary" (click)="resetForm()"></button>
+                    <button type="submit" pButton label="Sign in"></button>
+                </div>
+
+            </form>
+        </ng-template>
+        <ng-template pTemplate="footer">
+            <div class="flex justify-content-center align-items-center">
+                <span>Don't have an account?</span><button class="p-button-link " pButton label="Sign up"></button>
+            </div>
+        </ng-template>
+    </p-card>
+
+</div>

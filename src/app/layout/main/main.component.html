@@ -1,0 +1,35 @@
+<div class="layout">
+    <div class="layout__topbar">
+      <p-menubar class="w-full h-full">
+        <ng-template pTemplate="start">
+          <div class="md:inline-flex md:align-items-center md:w-full md:justify-content-between md:ml-1">
+            <button pButton pRipple icon="pi pi-bars" class="p-button p-button-outlined mr-4 p-button-sm" (click)="toggleSidebar()">
+            </button>
+            <img src="../../../assets/img/vga-card.png" alt="logo-image"/>
+          </div>        
+        </ng-template>
+        <ng-template pTemplate="end">
+          <div class="md:flex md:align-items-center md:justify-content-between md:w-12rem hidden">
+            @if(currentLoggedUserSignal()?.id) {
+              <span (click)="menu.toggle($event)">{{currentLoggedUserSignal()?.email}}</span>
+              <p-avatar icon="pi pi-user" styleClass="mr-2" size="large" shape="circle"></p-avatar>
+            } @else {
+              <span class="text-red-500">[Error connection to API...]</span>
+            }
+            
+          </div>        
+        </ng-template>
+      </p-menubar>    
+    </div>
+    <div class="layout__main">
+      <div #sidebar class="layout__sidebar">
+        <app-sidebar [isCollapsed]="isSidebarCollapsed()"></app-sidebar>
+      </div>
+      <div #content class="layout__content">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+    
+</div>
+
+<p-menu #menu [model]="avatarPopupMenuItems" [popup]="true" />

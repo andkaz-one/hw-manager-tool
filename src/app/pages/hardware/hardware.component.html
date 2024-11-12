@@ -1,0 +1,31 @@
+<div class="grid">
+    <div class="col-12">
+        <p-card>
+          <button pButton
+                label="add new"
+                icon="pi pi-plus"
+                iconPos="left"
+                class="p-button-rounded"
+                title="add new record"></button>  
+        </p-card>
+ 
+    </div>
+    <div class="col-12">
+        <p-tabView>
+            <p-tabPanel header="Table">
+                <ng-template pTemplate="content">
+                    <app-data-table [data]="data()" (onShow)="openDetailsWindow($event)"></app-data-table>
+                </ng-template>               
+            </p-tabPanel>
+            <p-tabPanel header="Kanban">
+                <p>
+                    Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium...
+                </p>
+            </p-tabPanel>
+        </p-tabView>
+
+
+
+        
+    </div>
+</div>

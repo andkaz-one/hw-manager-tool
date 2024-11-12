@@ -1,0 +1,23 @@
+<div class="grid">
+    <div class="col-4 border-1">
+        <button (click)="enableForm()">x</button>
+        <form [formGroup]="equipmentForm">
+            <div class="p-fluid">
+                <label>Brand</label>
+                <input pInputText type="text" formControlName="brand"/>
+            </div>
+            <div class="p-fluid">
+                <label>Model</label>
+                <input pInputText type="text" formControlName="model"/>
+            </div>
+            <div class="p-fluid">
+                <label>Serial Number</label>
+                <input pInputText type="text" formControlName="serialNumber"/>
+            </div>
+        </form>
+    </div>
+    <div class="col-4 border-1">
+    
+    </div>
+    <div class="col-4 border-1"></div>
+</div>

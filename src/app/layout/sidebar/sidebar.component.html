@@ -1,0 +1,15 @@
+<div [class]="isCollapsed() ? 'sidebar-collapsed surface-ground text-color ' : 'sidebar surface-ground text-color shadow-1'">   
+    @for (item of menuItems; track $index) {
+      <li class="list-none h-3rem flex justify-content-evenly align-items-center m-2">
+        <a class="w-full flex align-items-center justify-content-around p-1 cursor-pointer text-lg h-3rem item-link" 
+        routerLinkActive="active"
+        [routerLink]="item.routerLink"
+        >
+          <i style="font-size: 1.5rem" [class]="item.icon"></i>
+          @if (!isCollapsed()) {
+            <span class="fadeinleft  animation-duration-500">{{ item.label }}</span>
+          }
+        </a>
+      </li>
+    }   
+  </div>
