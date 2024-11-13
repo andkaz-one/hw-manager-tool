@@ -26,11 +26,9 @@ export class HardwareService {
         id: 1,
         firstName: 'John',
         lastName: 'Doe',
-        contactInfo: {
-          phoneNumber: '+1234567890',
-          email: 'johndoe@example.com',
-          address: '123 Main St, Anytown, CA 12345'
-        }
+        phoneNumber: '+1234567890',
+        email: 'johndoe@example.com',
+        address: '123 Main St, Anytown, CA 12345'
       }
     },
     {
@@ -43,11 +41,9 @@ export class HardwareService {
         id: 2,
         firstName: 'Jane',
         lastName: 'Smith',
-        contactInfo: {
-          phoneNumber: '+9876543210',
-          email: 'janesmith@example.com',
-          address: '456 Elm St, Anytown, CA 54321'
-        }
+        phoneNumber: '+9876543210',
+        email: 'janesmith@example.com',
+        address: '456 Elm St, Anytown, CA 54321'
       }
     },
     {
@@ -67,11 +63,9 @@ export class HardwareService {
         id: 3,
         firstName: 'Michael',
         lastName: 'Johnson',
-        contactInfo: {
-          phoneNumber: '+5555555555',
-          email: 'michaeljohnson@example.com',
-          address: '789 Oak St, Anytown, CA 98765'
-        }
+        phoneNumber: '+5555555555',
+        email: 'michaeljohnson@example.com',
+        address: '789 Oak St, Anytown, CA 98765'
       }
     }
   ])

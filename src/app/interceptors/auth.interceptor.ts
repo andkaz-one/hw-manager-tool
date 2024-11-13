@@ -1,7 +1,7 @@
 import { Injectable, Injector } from '@angular/core';
 import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
-import { catchError, map, switchMap, tap } from 'rxjs/operators';
+import { catchError, concatMap, map, switchMap, tap } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
 import { AuthService } from '../services/auth.service';
@@ -9,7 +9,9 @@ import { TokensService } from '../services/tokens.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-  constructor(private authService: AuthService, private tokenService: TokensService) {}
+
+  constructor(private authService: AuthService,
+              private tokenService: TokensService) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     // Pobieramy token dostępu z usługi autentykacji
@@ -19,7 +21,7 @@ export class AuthInterceptor implements HttpInterceptor {
     if (accessToken) {
       request = request.clone({
         setHeaders: {
-          Authorization: `Bearer ${accessToken}`
+          Authorization: `Bearer ${this.tokenService.getToken()}`
         }
       });
     }
@@ -31,10 +33,16 @@ export class AuthInterceptor implements HttpInterceptor {
           // Wywołanie funkcji odświeżania tokenu
           return this.authService.refreshToken()
             .pipe(
-              switchMap(() => {
-                return next.handle(request);
-              })
-            );
+              switchMap((value) => {
+                
+                this.tokenService.saveToken(value['access_token']);
+                const newToken = this.tokenService.getToken()
+                const refreshedReq = request.clone({
+                  headers: request.headers.set('Authorization', `Bearer ${newToken}`)
+                });
+                return next.handle(refreshedReq);
+              }
+            ));
         } else {
           return throwError(error);
         }

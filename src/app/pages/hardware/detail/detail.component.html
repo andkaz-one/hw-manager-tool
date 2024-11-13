@@ -1,6 +1,9 @@
 <div class="grid">
-    <div class="col-4 border-1">
-        <button (click)="enableForm()">x</button>
+    <div class="col-4">
+        <div class="flex justify-content-between align-items-center">
+            <h3>Basic information</h3>
+            <p-inputSwitch (onChange)="toggleEquipmentForm($event)"/>
+        </div>
         <form [formGroup]="equipmentForm">
             <div class="p-fluid">
                 <label>Brand</label>
@@ -16,8 +19,64 @@
             </div>
         </form>
     </div>
-    <div class="col-4 border-1">
-    
+    <div class="col-4">
+        <div class="flex justify-content-between align-items-center">
+            <h3>Owner information</h3>
+            <p-inputSwitch (onChange)="toggleOwnerForm($event)"/>
+        </div>
+        <form [formGroup]="ownerForm">
+            <div class="p-fluid">
+                <label>First Name</label>
+                <input pInputText type="text" formControlName="firstName"/>
+            </div>
+            <div class="p-fluid">
+                <label>Last Name</label>
+                <input pInputText type="text" formControlName="lastName"/>
+            </div>
+            <div class="p-fluid">
+                <label>Email</label>
+                <input pInputText type="text" formControlName="email"/>
+            </div>
+            <div class="p-fluid">
+                <label>Phone Number</label>
+                <input pInputText type="text" formControlName="phone"/>
+            </div>
+            <div class="p-fluid">
+                <label>Address</label>
+                <input pInputText type="text" formControlName="address"/>
+            </div>
+        </form>    
     </div>
-    <div class="col-4 border-1"></div>
+    <div class="col-4">
+        <div class="flex justify-content-between align-items-center">
+            <h3>Repair information</h3>
+            <p-inputSwitch (onChange)="toggleRepairForm($event)"/>
+        </div>
+        <form [formGroup]="repairForm">
+            <div class="p-fluid">
+                <label>Date</label>
+                <input pInputText type="text" formControlName="date"/>
+            </div>
+            <div class="p-fluid">
+                <label>Replaced parts</label>
+                <input pInputText type="text" formControlName="replacedParts"/>
+            </div>
+            <div class="p-fluid">
+                <label>Status</label>
+                <input pInputText type="text" formControlName="status"/>
+            </div>
+            <div class="p-fluid">
+                <label>Description</label>
+                <textarea 
+                    rows="5" 
+                    cols="30" 
+                    pInputTextarea 
+                    formControlName="description">
+                </textarea>
+            </div>
+        </form>
+    </div>
+    <div class="w-full flex justify-content-end">
+        <button pButton label="Save" (click)="save()"></button>
+    </div>
 </div>

@@ -58,11 +58,10 @@ export class AuthService {
 
     return this.http.post<any>('http://localhost:3000/auth/refresh-rt', { refreshToken })
       .pipe(
-        // Tutaj możesz dodać dodatkowe operatory, np. do obsługi błędów
         tap(response => {
           // Przechowujemy nowy access token
-          this.tokensService.saveToken(response.access_token);
-          this.tokensService.saveRefreshToken(response.refresh_token);
+          this.tokensService.saveToken(response['access_token']);
+          this.tokensService.saveRefreshToken(response['refresh_token']);
         }),
         catchError(AuthService.handleError)
       );

@@ -29,11 +29,8 @@ export interface Owner {
     id: number;
     firstName: string;
     lastName: string;
-    contactInfo: ContactInfo;
-}
-  
-export interface ContactInfo {
     phoneNumber: string;
     email: string;
     address: string;
 }
+  

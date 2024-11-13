@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, OnInit, signal, WritableSignal } from '@angular/core';
 import { TableModule } from 'primeng/table';
 import { TabViewModule } from 'primeng/tabview';
 import { HardwareService } from '../../services/hardware.service';
@@ -9,6 +9,8 @@ import { DataTableComponent } from './data-table/data-table.component';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { DetailComponent } from './detail/detail.component';
 import { Equipment } from '../../interfaces';
+import { SidebarModule } from 'primeng/sidebar';
+
 
 
 @Component({
@@ -19,8 +21,10 @@ import { Equipment } from '../../interfaces';
     TableModule,
     TabViewModule,
     DataTableComponent,
+    DetailComponent,
     CardModule,
-    ButtonModule
+    ButtonModule,
+    SidebarModule
   ],
   providers: [HardwareService, DialogService],
   templateUrl: './hardware.component.html',
@@ -33,6 +37,7 @@ export class HardwareComponent implements OnInit {
 
   private dialogRef: DynamicDialogRef | undefined;
 
+
   // mock data
   data = this.hardwareService.data$;
 
@@ -44,7 +49,8 @@ export class HardwareComponent implements OnInit {
       data: event,
       header: `Details of: ${event.model}`,
       maximizable: true,
-      width: '45vw'
+      width: '45vw',
+      modal: true
     });
   }
 
